@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Chapter 7 Collective Quiz</title>
 
 </head>
-<body>
+<body onload="disableAnswerQuestions()">
+
+    <h1>Chapter 7 - Subtopic:Web - Questions </h1>
 
     {% load static %}
 
@@ -14,7 +16,7 @@
     {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}
-        <li><a href="{% url 'firstApp:detail' question.id %}">{{ question.question_text }}</a></li>
+        <li onclick="saveQuestionId({{ question.id }})" id="{{ question.id }}"><a href="{% url 'firstApp:detail' question.id %}">{{ question.question_text }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
@@ -22,4 +24,31 @@
 {% endif %}
 
 </body>
+
+<script type="application/javascript">
+    function saveQuestionId(question){
+        try{
+            sessionStorage.setItem("Pregunta "+question,question);
+        }catch (ex){
+            alert("can not stored ids");
+        }
+    }
+    function disableAnswerQuestions() {
+        for(var i = parseInt(sessionStorage.getItem(sessionStorage.key(0))); i < parseInt(sessionStorage.length) + parseInt(sessionStorage.getItem(sessionStorage.key(0))); i++){
+            try{
+                document.getElementById(sessionStorage.getItem("Pregunta "+i)).style.display = "none";
+            }
+            catch (e){
+                alert("can not get element")
+            }
+        }
+        if(sessionStorage.length==3){
+            hola = prompt("You have finished, please write your name");
+            alert("Thank you "+hola);
+            sessionStorage.clear();
+        }
+
+    }
+</script>
+
 </html>
