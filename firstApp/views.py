@@ -23,6 +23,12 @@ class ResultsView(generic.DetailView):
     model = Question
     template_name = 'firstApp/results.html'
 
+class FinishView():
+    template_name = 'firstApp/finish.html'
+
+def finish(request):
+    return render(request, 'firstApp/firstApp/finish.html');
+
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]

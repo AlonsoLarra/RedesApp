@@ -4,22 +4,27 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'firstApp/bootstrap.min.css' %}" />
+
 </head>
 <body>
 
-<h1>{{ question.question_text }}</h1>
+<h1 align="center">{{ question.question_text }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
+<div align="center">
 <form action="{% url 'firstApp:vote' question.id %}" method="post">
 {% csrf_token %}
 {% for choice in question.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+    <input size="" type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}"><h3>{{ choice.choice_text }}</h3></label><br />
 {% endfor %}
-<input type="submit" value="Vote" />
+<input class="btn btn-info btn-lg" type="submit" value="Vote" />
 </form>
 </ul>
-
+</div>
 </body>
 </html>

@@ -4,17 +4,23 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'firstApp/bootstrap.min.css' %}" />
+
 </head>
 <body>
+<div align="center">
     <h1>{{ question.question_text }}</h1>
 
-<ul>
+
 {% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+   <h3>{{ choice.choice_text }} - <p class="text-info">{{ choice.votes }} vote{{ choice.votes|pluralize }}</p> </h3>
 {% endfor %}
-</ul>
+
 
 {#<a href="{% url 'firstApp:detail' question.id %}">Vote again?</a>#}
-<a href="/firstApp">Return to Questions</a>
+<a class="btn btn-info btn-md" href="/firstApp">Return to Questions</a>
+</div>
 </body>
 </html>
