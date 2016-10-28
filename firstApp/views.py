@@ -11,7 +11,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.order_by('-pub_date')[:5]
+        return Question.objects.order_by('-pub_date')[:10]
 
 
 class DetailView(generic.DetailView):
@@ -31,7 +31,7 @@ def finish(request):
 
 
 def index(request):
-    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    latest_question_list = Question.objects.order_by('-pub_date')[:10]
     context = {'latest_question_list': latest_question_list}
     return render(request, 'firstApp/index.html', context)
 
