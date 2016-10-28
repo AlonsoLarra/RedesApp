@@ -36,13 +36,16 @@
         }
     }
     function disableAnswerQuestions() {
-        for(var i = parseInt(sessionStorage.getItem(sessionStorage.key(0))); i < parseInt(sessionStorage.length) + parseInt(sessionStorage.getItem(sessionStorage.key(0))); i++){
+
+        for(var i = 0; i< sessionStorage.length;i++){
+
             try{
-                document.getElementById(sessionStorage.getItem("Pregunta 6")).style.display = "none";
+                document.getElementById(sessionStorage.getItem(sessionStorage.key(i))).style.display = "none";
             }
             catch (e){
-                alert("can not get element")
+
             }
+
         }
         if(sessionStorage.length==10){
             hola = prompt("You have finished, please write your name");
